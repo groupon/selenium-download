@@ -16,6 +16,7 @@ setup:
 
 .PHONY: test
 test: build
+	@./node_modules/.bin/coffee test/test.coffee
 
 build: $(LIB)
 	@./node_modules/.bin/npub prep lib
