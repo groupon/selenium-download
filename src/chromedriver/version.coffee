@@ -30,10 +30,9 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
-FALLBACK_CHROMEDRIVER_VERSION = '2.9'
+FALLBACK_CHROMEDRIVER_VERSION = '2.10'
 
 request = require 'request'
-parseXml = require('xml2js').parseString
 
 getArchitecture = ->
   platform = process.platform
@@ -53,35 +52,10 @@ getArchitecture = ->
 
   { platform, bitness }
 
-parseChrome = (result) ->
-  version = null
-  error = null
-
-  try
-    prefixes = result.ListBucketResult.CommonPrefixes
-    prefix = prefixes[prefixes.length-2] # last item is /Icons, get 2nd to last
-    versionPath = prefix.Prefix[0] # something like "2.8/"
-    version = versionPath.substring(0, versionPath.length-1)
-  catch parseError
-    error = parseError
-
-  {error, version}
-
-requestXml = (url, callback) ->
-  request url, (error, response, body) ->
-    return callback error if error?
-
-    parseXml body, (error, result) ->
-      return callback(error) if error?
-
-      callback(null, result)
-
 getLatestVersion = (callback) ->
-  requestXml 'http://chromedriver.storage.googleapis.com/?delimiter=/&prefix=', (error, result) ->
+  request 'http://chromedriver.storage.googleapis.com/LATEST_RELEASE', (error, response, body) ->
     return callback(error) if error?
-
-    {error, version} = parseChrome(result)
-    callback error, version
+    callback null, body
 
 module.exports = (callback) ->
   getLatestVersion (error, version) ->
