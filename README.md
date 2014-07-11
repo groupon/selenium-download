@@ -36,4 +36,12 @@ are downloaded into that path.
 `update` forces
 the selenium.jar and chromedriver
 files to be the latest available versions.
+Pulls from temp directory if available.
+
+### selenium.forceUpdate
+
+`forceUpdate` forces
+the selenium.jar and chromedriver
+files to be the latest available versions.
+Clears temp directory before checking.
 

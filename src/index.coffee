@@ -30,7 +30,8 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
-{unlinkSync, existsSync} = require 'fs'
+{existsSync} = require 'fs'
+{rmrfSync} = require 'fs.extra'
 mkdirp = require 'mkdirp'
 async = require 'async'
 tempdir = require './tempdir'
@@ -43,8 +44,8 @@ makePaths = (binPath, tempPath) ->
   mkdirp.sync binPath
   mkdirp.sync tempPath
 
-removeFile = (file) ->
-  unlinkSync file if existsSync file
+removeDir = (dir) ->
+  rmrfSync(dir)
 
 binariesExist = (binPath) ->
   [ 'selenium.jar', 'chromedriver' ].every (binary) ->
@@ -61,10 +62,13 @@ ensure = (binPath, callback) ->
   ], callback
 
 update = (binPath, callback) ->
-  removeFile "#{binPath}/selenium.jar"
-  removeFile "#{binPath}/chromedriver"
-
+  removeDir binPath
   ensure(binPath, callback)
 
-module.exports = { update, ensure }
+forceUpdate = (binPath, callback) ->
+  removeDir binPath
+  removeDir TEMP_PATH
+  ensure(binPath, callback)
+
+module.exports = { update, forceUpdate, ensure }
 
