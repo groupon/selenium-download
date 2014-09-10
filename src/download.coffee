@@ -30,7 +30,10 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
-download = require 'download'
+Download = require 'download'
+progress = require 'download-status'
+
+linesUsed = []
 
 parseHashes = (rawHash) ->
   # format: crc32c=qRiQ9g==, md5=AAQvmRLFWmGR17P+ASORNQ==
@@ -44,19 +47,48 @@ parseHashes = (rawHash) ->
   hashes = rawHash.split(',')
   hashes.reduce parse, {}
 
+claimLine = ->
+  line = 0
+  line++ while linesUsed[line]?
+  linesUsed[line] = true
+  return line
+
+linesInUse = ->
+  lines = 0
+  lines++ for line in linesUsed when line?
+  return lines
+
+freeLine = (line) ->
+  delete linesUsed[line]
+
 module.exports = (url, destinationDir, fileName, callback) ->
   hash = null
 
-  fileOptions = { url, name: fileName }
-  stream = download(fileOptions, destinationDir)
+  lineNum = claimLine()
 
-  stream.on 'response', (response) ->
+  if lineNum is linesUsed.length - 1
+    process.stderr.write "\n"
+
+
+  fileOptions = { url, name: fileName }
+  download = new Download(clear: false).get(fileOptions, destinationDir)
+
+  download.use (response, file, next) ->
+
+    # As data comes in, reset the cursor position so we can render multiple
+    # progress bars in the one console
+    response.on 'data', (data) ->
+      out = process.stderr
+      out.moveCursor 0, out.rows - 1
+      out.moveCursor 0, -lineNum
+
     rawHash = response.headers['x-goog-hash']
     hash = parseHashes(rawHash).md5
+    next()
 
-  stream.on 'error', (error) ->
-    callback(error)
+  download.use progress()
 
-  stream.on 'close', ->
+  download.run (err, files) ->
+    freeLine(lineNum)
+    callback(err) if err?
     callback(null, hash)
-
