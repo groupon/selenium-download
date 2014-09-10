@@ -1,10 +1,12 @@
 fs = require 'fs'
 assert = require 'assert'
 rmrf = require 'rimraf'
+
+tempdir = require '../lib/tempdir'
 seleniumDownload = require '..'
 
 BIN_PATH = __dirname + '/bin'
-TMP_PATH = '/tmp/testium'
+TMP_PATH = "#{tempdir}testium"
 
 clearFileSystem = ->
   rmrf.sync TMP_PATH
