@@ -61,11 +61,10 @@ module.exports = (binPath, tempPath, version, url, callback) ->
 
     unzippedFilePath = "#{tempPath}/chromedriver"
     async.waterfall [
-      (done) -> downloadFile url, tempPath, tempFileName, done
+      (done) -> downloadFile url, tempPath, tempFileName, "selenium chromedriver", done
       (hash, done) -> validate tempFilePath, hash, done
       (done) -> unzip tempPath, tempFilePath, done
       (done) -> move unzippedFilePath, tempFilePath, done
       (done) -> copy tempFilePath, chromedriverPath, done
       (done) -> fs.chmod chromedriverPath, '755', done
     ], callback
-

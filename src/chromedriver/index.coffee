@@ -41,4 +41,3 @@ module.exports = (binPath, tempPath) ->
       console.log "[testium] grabbing selenium chromedriver #{metadata.version}"
 
       download binPath, tempPath, metadata.version, metadata.downloadUrl, callback
-
