@@ -77,7 +77,7 @@ module.exports = (url, destinationDir, fileName, description, callback) ->
       bar.ratio position, fileLength, msg = "#{percent}% - #{bitsToSize(position)} / #{bitsToSize(fileLength)}"
 
     response.on "end", ->
-      bar.ratio fileLength, fileLength, msg = "COMPLETE"
+      bar.ratio fileLength, fileLength, msg = "COMPLETE                "
       activeDownloadCount -= 1
       if activeDownloadCount == 0
         multi.charm.reset()

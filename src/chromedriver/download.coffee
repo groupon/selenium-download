@@ -61,7 +61,7 @@ module.exports = (binPath, tempPath, version, url, callback) ->
 
     unzippedFilePath = "#{tempPath}/chromedriver"
     async.waterfall [
-      (done) -> downloadFile url, tempPath, tempFileName, "selenium chromedriver", done
+      (done) -> downloadFile url, tempPath, tempFileName, "selenium chromedriver #{version}", done
       (hash, done) -> validate tempFilePath, hash, done
       (done) -> unzip tempPath, tempFilePath, done
       (done) -> move unzippedFilePath, tempFilePath, done
