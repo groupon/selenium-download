@@ -25,14 +25,17 @@
     "rimraf": "^2.2.8"
   },
   "dependencies": {
-    "mkdirp": "~0.3.5",
+    "adm-zip": "~0.4.4",
     "async": "~0.2.10",
-    "request": "^2.34.0",
-    "xml2js": "~0.4.1",
-    "underscore": "^1.6.0",
-    "fs.extra": "^1.2.1",
+    "download": "~1.0.7",
+    "download-status": "^2.0.0",
     "follow-redirects": "0.0.3",
-    "download": "~0.1.11",
-    "adm-zip": "~0.4.4"
+    "fs.extra": "^1.2.1",
+    "mkdirp": "~0.3.5",
+    "multimeter": "^0.1.1",
+    "prettysize": "0.0.3",
+    "request": "^2.34.0",
+    "underscore": "^1.6.0",
+    "xml2js": "~0.4.1"
   }
 }
