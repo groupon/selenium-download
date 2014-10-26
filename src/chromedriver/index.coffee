@@ -38,4 +38,7 @@ module.exports = (binPath, tempPath) ->
     getLatestVersion (error, metadata) ->
       return callback(error) if error?
 
+      console.log "[testium] grabbing selenium chromedriver #{metadata.version}"
+
       download binPath, tempPath, metadata.version, metadata.downloadUrl, callback
+

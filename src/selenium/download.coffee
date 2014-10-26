@@ -45,10 +45,11 @@ module.exports = (binPath, tempPath, url, version, callback) ->
   if fs.existsSync tempFilePath
     copy tempFilePath, binFilePath, callback
   else
-    downloadFile url, tempPath, tempFileName, "selenium standalone server #{version}", (error, hash) ->
+    downloadFile url, tempPath, tempFileName, (error, hash) ->
       return callback error if error?
 
       validate tempFilePath, hash, (error) ->
         return callback error if error?
 
         copy tempFilePath, binFilePath, callback
+
