@@ -30,15 +30,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
-Download = require 'download'
-multimeter = require 'multimeter'
-bitsToSize = require 'prettysize'
-
-# Initialize progress bar library
-multi = multimeter(process)
-multi.on "^C", process.exit
-multi.charm.reset()
-activeDownloadCount = 0
+download = require 'download'
 
 parseHashes = (rawHash) ->
   # format: crc32c=qRiQ9g==, md5=AAQvmRLFWmGR17P+ASORNQ==
@@ -52,38 +44,19 @@ parseHashes = (rawHash) ->
   hashes = rawHash.split(',')
   hashes.reduce parse, {}
 
-module.exports = (url, destinationDir, fileName, description, callback) ->
+module.exports = (url, destinationDir, fileName, callback) ->
   hash = null
 
   fileOptions = { url, name: fileName }
-  download = new Download(clear: false).get(fileOptions, destinationDir)
+  stream = download(fileOptions, destinationDir)
 
-  download.use (response, file, next) ->
-    fileLength = parseInt(response.headers["content-length"], 10)
+  stream.on 'response', (response) ->
     rawHash = response.headers['x-goog-hash']
     hash = parseHashes(rawHash).md5
 
-    position = 0
-    activeDownloadCount += 1
+  stream.on 'error', (error) ->
+    callback(error)
 
-    multi.charm.position(1, (activeDownloadCount * 3) + 2)
-    multi.write(description)
-    bar = multi(1, (activeDownloadCount * 3) + 3, {width: 30})
-    multi.charm.position(1, (activeDownloadCount * 3) + 5)
-
-    response.on "data", (data) ->
-      position += data.length
-      percent = Math.round((position / fileLength) * 100)
-      bar.ratio position, fileLength, msg = "#{percent}% - #{bitsToSize(position)} / #{bitsToSize(fileLength)}"
-
-    response.on "end", ->
-      bar.ratio fileLength, fileLength, msg = "COMPLETE                "
-      activeDownloadCount -= 1
-      if activeDownloadCount == 0
-        multi.charm.reset()
-        multi.destroy()
-      next()
-
-  download.run (err, files) ->
-    callback(err) if err?
+  stream.on 'close', ->
     callback(null, hash)
+
