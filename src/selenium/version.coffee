@@ -33,10 +33,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 buildDownloadUrl = (version, minorVersion) ->
   "http://selenium-release.storage.googleapis.com/#{minorVersion}/selenium-server-standalone-#{version}.jar"
 
-FALLBACK_SELENIUM_VERSION = '2.44.0'
+FALLBACK_SELENIUM_VERSION = '2.43.0'
 FORCE_SELENIUM_VERSION =
-  downloadUrl: buildDownloadUrl('2.44.0', '2.44')
-  version: '2.44.0'
+  downloadUrl: buildDownloadUrl('2.43.0', '2.43')
+  version: '2.43.0'
 
 request = require 'request'
 parseXml = require('xml2js').parseString
