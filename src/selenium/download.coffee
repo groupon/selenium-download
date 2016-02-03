@@ -42,8 +42,10 @@ module.exports = (binPath, tempPath, url, version, callback) ->
 
   tempFileName = "selenium_#{version}.jar"
   tempFilePath = "#{tempPath}/#{tempFileName}"
-  if fs.existsSync tempFilePath
-    copy tempFilePath, binFilePath, callback
+  validTempFilePath = "#{tempPath}/#{tempFileName}.valid"
+
+  if fs.existsSync validTempFilePath
+    copy validTempFilePath, binFilePath, callback
   else
     downloadFile url, tempPath, tempFileName, (error, hash) ->
       return callback error if error?
@@ -51,5 +53,6 @@ module.exports = (binPath, tempPath, url, version, callback) ->
       validate tempFilePath, hash, (error) ->
         return callback error if error?
 
-        copy tempFilePath, binFilePath, callback
-
+        copy tempFilePath, validTempFilePath, (error) ->
+          return callback error if error?
+          copy tempFilePath, binFilePath, callback
