@@ -63,6 +63,8 @@ module.exports = (callback) ->
       version = FALLBACK_CHROMEDRIVER_VERSION
       console.log "[testium] Unable to determine latest version of selenium chromedriver; using #{version}"
       console.error (error.stack || error)
+    else
+      version = version.trim()
 
     {platform, bitness} = getArchitecture()
     downloadUrl = "https://chromedriver.storage.googleapis.com/#{version}/chromedriver_#{platform}#{bitness}.zip"

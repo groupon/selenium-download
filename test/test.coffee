@@ -1,4 +1,6 @@
 fs = require 'fs'
+{execFile} = require 'child_process'
+
 assert = require 'assert'
 rmrf = require 'rimraf'
 
@@ -30,7 +32,13 @@ seleniumDownload.update BIN_PATH, (error) ->
     assert fs.existsSync(BIN_PATH + '/chromedriver')
     assert fs.existsSync(BIN_PATH + '/selenium.jar')
 
-    clearFileSystem()
+    console.log 'make sure it did not download an invalid jar'
+    execFile 'java', [
+      # -h means "show usage/help". Selenium has no --version :(
+      '-jar', BIN_PATH + '/selenium.jar', '-h'
+    ], (error, stdout) ->
+      throw error if error?
+      clearFileSystem()
 
 process.on 'uncaughtException', (error) ->
   clearFileSystem()
