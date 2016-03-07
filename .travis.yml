@@ -1,3 +1,16 @@
 language: node_js
 node_js:
-    - 0.10
+  - '0.10'
+  - '4'
+before_install:
+  - npm install -g npm@latest-2
+before_deploy:
+  - 'git config --global user.email "jan.krems@gmail.com"'
+  - 'git config --global user.name "Jan Olaf Krems"'
+deploy:
+  provider: script
+  script: ./node_modules/.bin/nlm release
+  skip_cleanup: true
+  'on':
+    branch: master
+    node: '4'

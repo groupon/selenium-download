@@ -3,36 +3,57 @@
   "version": "2.0.0",
   "description": "allow downloading of latest selenium standalone server and chromedriver",
   "license": "BSD-3-Clause",
-  "publishConfig": {
+  "main": "lib/index.js",
+  "homepage": "https://github.com/groupon/selenium-download",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/groupon/selenium-download"
+  },
+  "bugs": {
+    "url": "https://github.com/groupon/selenium-download/issues"
+  },
+  "scripts": {
+    "build": "rm -rf lib && coffee --no-header -cbo lib src",
+    "pretest": "npm run build",
+    "test": "mocha",
+    "posttest": "nlm verify",
+    "watch": "coffee --no-header -wcbo lib src & nodemon -w lib -w test -e coffee,js,json -x \"mocha\""
+  },
+  "nlm": {
     "license": {
-      "exclude": [
-        "test",
-        "lib"
+      "files": [
+        "src"
       ]
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/groupon-testium/selenium-download"
-  },
-  "main": "lib/index.js",
-  "scripts": {
-    "test": "make all"
+  "dependencies": {
+    "adm-zip": "~0.4.4",
+    "async": "~0.2.10",
+    "download": "~0.1.11",
+    "follow-redirects": "0.0.3",
+    "fs.extra": "^1.2.1",
+    "mkdirp": "~0.3.5",
+    "request": "^2.34.0",
+    "underscore": "^1.6.0",
+    "xml2js": "~0.4.1"
   },
   "devDependencies": {
-    "coffee-script-redux": "2.0.0-beta7",
-    "npub": "0.0.6",
+    "assertive": "^2.0.0",
+    "coffee-script": "^1.10.0",
+    "mocha": "^2.0.0",
+    "nlm": "^2.0.0",
+    "nodemon": "^1.0.0",
     "rimraf": "^2.2.8"
   },
-  "dependencies": {
-    "mkdirp": "~0.3.5",
-    "async": "~0.2.10",
-    "request": "^2.34.0",
-    "xml2js": "~0.4.1",
-    "underscore": "^1.6.0",
-    "fs.extra": "^1.2.1",
-    "follow-redirects": "0.0.3",
-    "download": "~0.1.11",
-    "adm-zip": "~0.4.4"
+  "author": {
+    "name": "Jan Olaf Krems",
+    "email": "jan.krems@gmail.com"
+  },
+  "files": [
+    "*.js",
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }
