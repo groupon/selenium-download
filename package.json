@@ -46,8 +46,8 @@
     "rimraf": "^2.2.8"
   },
   "author": {
-    "name": "Jan Olaf Krems",
-    "email": "jan.krems@gmail.com"
+    "name": "Groupon",
+    "email": "opensource@groupon.com"
   },
   "files": [
     "*.js",
