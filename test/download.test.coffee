@@ -1,7 +1,7 @@
 fs = require 'fs'
 {execFile} = require 'child_process'
 
-assert = require 'assert'
+assert = require 'assertive'
 rmrf = require 'rimraf'
 
 tempdir = require '../lib/tempdir'
@@ -26,8 +26,8 @@ describe 'seleniumDownload', ->
     seleniumDownload.update BIN_PATH, done
 
   it 'downloads the proper files', ->
-    assert fs.existsSync(BIN_PATH + '/chromedriver')
-    assert fs.existsSync(BIN_PATH + '/selenium.jar')
+    assert.expect fs.existsSync(BIN_PATH + '/chromedriver')
+    assert.expect fs.existsSync(BIN_PATH + '/selenium.jar')
 
   describe 'from local tmp', ->
     before (done) ->
@@ -35,8 +35,8 @@ describe 'seleniumDownload', ->
       seleniumDownload.update BIN_PATH, done
 
     it 'downloads the files again', ->
-      assert fs.existsSync(BIN_PATH + '/chromedriver')
-      assert fs.existsSync(BIN_PATH + '/selenium.jar')
+      assert.expect fs.existsSync(BIN_PATH + '/chromedriver')
+      assert.expect fs.existsSync(BIN_PATH + '/selenium.jar')
 
     it 'did not download an invalid jar', (done) ->
       @timeout 10000
