@@ -1,3 +1,10 @@
+### 2.0.2
+
+* Updated selenium and chromedriver - **[@gabehayes](https://github.com/gabehayes)** [#21](https://github.com/groupon/selenium-download/pull/21)
+  - [`fc359f2`](https://github.com/groupon/selenium-download/commit/fc359f229c765c86c7f6d7f3fd24eddcf4fc8305) **chore:** Update selenium version to 2.53.0
+  - [`003876d`](https://github.com/groupon/selenium-download/commit/003876d79128a07d01f9a58699b15d75b79e2ceb) **chore:** Update chromedriver version to 2.22
+
+
 ### 2.0.1
 
 * fix: More reliable (and correct) download - **[@jkrems](https://github.com/jkrems)** [#17](https://github.com/groupon/selenium-download/pull/17)
