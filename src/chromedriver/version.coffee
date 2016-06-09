@@ -30,7 +30,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
-FALLBACK_CHROMEDRIVER_VERSION = '2.10'
+FALLBACK_CHROMEDRIVER_VERSION = '2.22'
 
 request = require 'request'
 
@@ -70,4 +70,3 @@ module.exports = (callback) ->
     downloadUrl = "https://chromedriver.storage.googleapis.com/#{version}/chromedriver_#{platform}#{bitness}.zip"
 
     callback null, { downloadUrl, version }
-
