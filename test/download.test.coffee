@@ -22,7 +22,6 @@ describe 'seleniumDownload', ->
   after clearFileSystem
 
   before 'initial download', (done) ->
-    @timeout 30000
     seleniumDownload.update BIN_PATH, done
 
   it 'downloads the proper files', ->
@@ -31,7 +30,6 @@ describe 'seleniumDownload', ->
 
   describe 'from local tmp', ->
     before (done) ->
-      @timeout 30000
       seleniumDownload.update BIN_PATH, done
 
     it 'downloads the files again', ->
