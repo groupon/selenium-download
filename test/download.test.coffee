@@ -25,6 +25,7 @@ describe 'seleniumDownload', ->
     seleniumDownload.update BIN_PATH, done
 
   it 'downloads the proper files', ->
+    console.log '?? ' + BIN_PATH + '/chromedriver'
     assert.expect fs.existsSync(BIN_PATH + '/chromedriver')
     assert.expect fs.existsSync(BIN_PATH + '/selenium.jar')
 

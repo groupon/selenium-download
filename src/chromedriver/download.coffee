@@ -53,6 +53,9 @@ module.exports = (binPath, tempPath, version, url, callback) ->
 
   tempFileName = "chromedriver_#{version}"
   tempFilePath = "#{tempPath}/#{tempFileName}"
+  console.log('--> tempFilePath', tempFilePath)
+  console.log ' - - - - - - - - - - - - - - -  hai: ' + fs.statSync(tempFilePath)
+  console.log('hai', fs.readdirSync(tempFilePath))
   if fs.existsSync tempFilePath
     copy tempFilePath, chromedriverPath, (error) ->
       return callback error if error?
@@ -68,4 +71,3 @@ module.exports = (binPath, tempPath, version, url, callback) ->
       (done) -> copy tempFilePath, chromedriverPath, done
       (done) -> fs.chmod chromedriverPath, '755', done
     ], callback
-
