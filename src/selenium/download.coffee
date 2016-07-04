@@ -42,7 +42,8 @@ module.exports = (binPath, tempPath, url, version, callback) ->
 
   tempFileName = "selenium_#{version}.jar"
   tempFilePath = "#{tempPath}/#{tempFileName}/selenium-server-standalone-#{version}.jar"
-  console.log('tempFilePath:', tempFilePath)
+  console.log('selenium/download:45 tempFilePath:', tempFilePath)
+  console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
   validTempFilePath = "#{tempPath}/#{tempFileName}.valid"
 
   if fs.existsSync validTempFilePath

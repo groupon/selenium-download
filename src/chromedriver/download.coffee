@@ -53,9 +53,10 @@ module.exports = (binPath, tempPath, version, url, callback) ->
 
   tempFileName = "chromedriver_#{version}"
   tempFilePath = "#{tempPath}/#{tempFileName}"
-  console.log('--> tempFilePath', tempFilePath)
-  console.log ' - - - - - - - - - - - - - - -  hai: ' + fs.statSync(tempFilePath)
-  console.log('hai', fs.readdirSync(tempFilePath))
+  console.log('chromedriver/download:56 --> tempFilePath', tempFilePath)
+  console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
+  console.log ' - - - - - - - hai:', fs.statSync(tempFilePath)
+  # console.log('hai', fs.readdirSync(tempFilePath))
   if fs.existsSync tempFilePath
     copy tempFilePath, chromedriverPath, (error) ->
       return callback error if error?

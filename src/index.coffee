@@ -48,10 +48,10 @@ removeDir = (dir) ->
   rmrfSync(dir)
 
 binariesExist = (binPath) ->
-  # [ 'selenium.jar', 'chromedriver' ].every (binary) ->
-  [ 'selenium.jar' ].every (binary) ->
-    console.log 'binary:', binary
-    console.log " >>---> #{binPath}/#{binary}"
+  [ 'selenium.jar', 'chromedriver' ].every (binary) ->
+  # [ 'selenium.jar' ].every (binary) ->
+    console.log "src/index:53 >> #{binPath}/#{binary}"
+    console.log ' - - - - - - - - - - - - - - - - - - - - - - - - - - - - '
     existsSync "#{binPath}/#{binary}"
 
 ensure = (binPath, callback) ->

@@ -51,7 +51,9 @@ module.exports = (url, destinationDir, fileName, callback) ->
 
   # fileOptions = { url, name: fileName }
   output = path.join(destinationDir, fileName)
-  console.log '>> ' + output
+  console.log 'src/download:54 >> ', url, output
+  console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
+
   stream = download(url, output)
 
   stream.on 'response', (response) ->
@@ -64,5 +66,6 @@ module.exports = (url, destinationDir, fileName, callback) ->
     callback(error)
 
   stream.on 'end', ->
-    console.log('end', hash, fileName, fs.existsSync(output))
+    console.log('src/download:67 end', hash, fileName, fs.existsSync(output))
+    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
     callback(null, hash)
