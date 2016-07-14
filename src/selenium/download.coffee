@@ -38,23 +38,25 @@ validate = require '../checksum'
 module.exports = (binPath, tempPath, url, version, callback) ->
   file = 'selenium.jar'
   binFilePath = "#{binPath}/#{file}"
-  return callback() if fs.existsSync binFilePath
+  fs.stat binFilePath, (error) ->
+    return callback if not error?
+    tempFileName = "selenium_#{version}.jar"
+    tempFilePath = "#{tempPath}/#{tempFileName}/selenium-server-standalone-#{version}.jar"
+    console.log('selenium/download:45 tempFilePath:', tempFilePath)
+    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
+    validTempFilePath = "#{tempPath}/#{tempFileName}.valid"
 
-  tempFileName = "selenium_#{version}.jar"
-  tempFilePath = "#{tempPath}/#{tempFileName}/selenium-server-standalone-#{version}.jar"
-  console.log('selenium/download:45 tempFilePath:', tempFilePath)
-  console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
-  validTempFilePath = "#{tempPath}/#{tempFileName}.valid"
-
-  if fs.existsSync validTempFilePath
-    copy validTempFilePath, binFilePath, callback
-  else
-    downloadFile url, tempPath, tempFileName, (error, hash) ->
-      return callback error if error?
-
-      validate tempFilePath, hash, (error) ->
-        return callback error if error?
-
-        copy tempFilePath, validTempFilePath, (error) ->
+    fs.stat validTempFilePath, (error) ->
+      if not error
+        copy validTempFilePath, binFilePath, (error, hash) ->
           return callback error if error?
-          copy tempFilePath, binFilePath, callback
+      else
+        downloadFile url, tempPath, tempFileName, (error, hash) ->
+          return callback error if error?
+
+          validate tempFilePath, hash, (error) ->
+            return callback error if error?
+
+            copy tempFilePath, validTempFilePath, (error) ->
+              return callback error if error?
+              copy tempFilePath, binFilePath, callback

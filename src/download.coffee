@@ -52,20 +52,20 @@ module.exports = (url, destinationDir, fileName, callback) ->
   # fileOptions = { url, name: fileName }
   output = path.join(destinationDir, fileName)
   console.log 'src/download:54 >> ', url, output
-  console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
+  console.log('save file to', output)
 
   stream = download(url, output)
 
   stream.on 'response', (response) ->
-    # console.log 'response', response.headers
     rawHash = response.headers['x-goog-hash']
     hash = parseHashes(rawHash).md5
+    console.log 'hash', hash
 
   stream.on 'error', (error) ->
     console.log 'error', error
     callback(error)
 
   stream.on 'end', ->
-    console.log('src/download:67 end', hash, fileName, fs.existsSync(output))
-    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
+    #console.log('src/download:67 end', hash, fileName, fs.existsSync(output))
+    console.log('thar be a file har')
     callback(null, hash)

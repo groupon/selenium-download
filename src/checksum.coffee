@@ -35,13 +35,14 @@ fs = require('fs')
 
 module.exports = (filePath, checksum, callback) ->
   hash = createHash('md5')
-
+  console.log 'stream from path', filePath
   stream = fs.ReadStream(filePath)
 
   stream.on 'data', (data) ->
     hash.update(data)
 
   stream.on 'end', ->
+    console.log 'did we get a stream?'
     digest = hash.digest('base64')
     if digest != checksum
       message = "File #{filePath} did not match checksum: expected #{checksum} but saw #{digest}"

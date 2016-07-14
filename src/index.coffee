@@ -30,7 +30,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
-{existsSync} = require 'fs'
+{statSync} = require 'fs'
 {rmrfSync} = require 'fs.extra'
 mkdirp = require 'mkdirp'
 async = require 'async'
@@ -41,10 +41,12 @@ ensureChromedriver = require './chromedriver'
 TEMP_PATH = "#{tempdir}testium"
 
 makePaths = (binPath, tempPath) ->
+  console.log('create paths')
   mkdirp.sync binPath
   mkdirp.sync tempPath
 
 removeDir = (dir) ->
+  console.log('remove dir')
   rmrfSync(dir)
 
 binariesExist = (binPath) ->
@@ -52,7 +54,11 @@ binariesExist = (binPath) ->
   # [ 'selenium.jar' ].every (binary) ->
     console.log "src/index:53 >> #{binPath}/#{binary}"
     console.log ' - - - - - - - - - - - - - - - - - - - - - - - - - - - - '
-    existsSync "#{binPath}/#{binary}"
+    try
+      statSync "#{binPath}/#{binary}"
+    catch e
+      return false
+    return true
 
 ensure = (binPath, callback) ->
   return callback() if binariesExist(binPath)
@@ -66,6 +72,7 @@ ensure = (binPath, callback) ->
 
 update = (binPath, callback) ->
   removeDir binPath
+  console.log 'what the actual fuck'
   ensure(binPath, callback)
 
 forceUpdate = (binPath, callback) ->
