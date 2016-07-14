@@ -49,23 +49,28 @@ unzip = (tempPath, filePath, callback) ->
 
 module.exports = (binPath, tempPath, version, url, callback) ->
   chromedriverPath = "#{binPath}/chromedriver"
-  return callback() if fs.existsSync chromedriverPath
+  fs.stat chromedriverPath, (error) ->
+    return callback() if not error?
+    tempFileName = "chromedriver_#{version}"
+    tempFilePath = "#{tempPath}/#{tempFileName}"
+    console.log('chromedriver/download:56 --> tempFilePath', tempFilePath)
+    console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
+    #console.log ' - - - - - - - hai:', fs.statSync(tempFilePath)
+    # console.log('hai', fs.readdirSync(tempFilePath))
 
-  tempFileName = "chromedriver_#{version}"
-  tempFilePath = "#{tempPath}/#{tempFileName}"
-  if fs.existsSync tempFilePath
-    copy tempFilePath, chromedriverPath, (error) ->
-      return callback error if error?
-      fs.chmod chromedriverPath, '755', callback
-  else
-
-    unzippedFilePath = "#{tempPath}/chromedriver"
-    async.waterfall [
-      (done) -> downloadFile url, tempPath, tempFileName, done
-      (hash, done) -> validate tempFilePath, hash, done
-      (done) -> unzip tempPath, tempFilePath, done
-      (done) -> move unzippedFilePath, tempFilePath, done
-      (done) -> copy tempFilePath, chromedriverPath, done
-      (done) -> fs.chmod chromedriverPath, '755', done
-    ], callback
+    fs.stat tempFilePath, (error) ->
+      if not error
+        copy tempFilePath, chromedriverPath, (error) ->
+          return callback error if error?
+          fs.chmod chromedriverPath, '755', callback
+      else
+        unzippedFilePath = "#{tempPath}/chromedriver"
+        async.waterfall [
+          (done) -> downloadFile url, tempPath, tempFileName, done
+          (hash, done) -> validate tempFilePath, hash, done
+          (done) -> unzip tempPath, tempFilePath, done
+          (done) -> move unzippedFilePath, tempFilePath, done
+          (done) -> copy tempFilePath, chromedriverPath, done
+          (done) -> fs.chmod chromedriverPath, '755', done
+        ], callback
 

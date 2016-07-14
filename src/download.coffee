@@ -31,6 +31,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ###
 
 download = require 'download'
+path = require 'path'
+fs = require 'fs'
 
 parseHashes = (rawHash) ->
   # format: crc32c=qRiQ9g==, md5=AAQvmRLFWmGR17P+ASORNQ==
@@ -47,16 +49,23 @@ parseHashes = (rawHash) ->
 module.exports = (url, destinationDir, fileName, callback) ->
   hash = null
 
-  fileOptions = { url, name: fileName }
-  stream = download(fileOptions, destinationDir)
+  # fileOptions = { url, name: fileName }
+  output = path.join(destinationDir, fileName)
+  console.log 'src/download:54 >> ', url, output
+  console.log('save file to', output)
+
+  stream = download(url, output)
 
   stream.on 'response', (response) ->
     rawHash = response.headers['x-goog-hash']
     hash = parseHashes(rawHash).md5
+    console.log 'hash', hash
 
   stream.on 'error', (error) ->
+    console.log 'error', error
     callback(error)
 
-  stream.on 'close', ->
+  stream.on 'end', ->
+    #console.log('src/download:67 end', hash, fileName, fs.existsSync(output))
+    console.log('thar be a file har')
     callback(null, hash)
-

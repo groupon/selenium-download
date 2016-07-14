@@ -36,9 +36,10 @@ getLatestVersion = require './version'
 module.exports = (binPath, tempPath) ->
   (callback) ->
     getLatestVersion (error, metadata) ->
+      console.log 'src/chromedriver/index:39', error, metadata
+      console.log(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
       return callback(error) if error?
 
       console.log "[testium] grabbing selenium chromedriver #{metadata.version}"
 
       download binPath, tempPath, metadata.version, metadata.downloadUrl, callback
-

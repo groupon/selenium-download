@@ -1,2 +1,3 @@
 --recursive
 --compilers test.coffee:coffee-script/register
+--timeout 180s
