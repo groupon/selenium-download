@@ -1,3 +1,8 @@
+### 2.0.3
+
+* [`803311c`](https://github.com/groupon/selenium-download/commit/803311c9e922b18195742f9b32b0dd367b761f8a) **fix:** chromedriver download on Windows unzips an .exe file
+
+
 ### 2.0.2
 
 * Updated selenium and chromedriver - **[@gabehayes](https://github.com/gabehayes)** [#21](https://github.com/groupon/selenium-download/pull/21)
