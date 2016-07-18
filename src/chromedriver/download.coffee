@@ -37,6 +37,8 @@ AdmZip = require 'adm-zip'
 downloadFile = require '../download'
 validate = require '../checksum'
 
+extension = if process.platform == 'win32' then '.exe' else ''
+
 unzip = (tempPath, filePath, callback) ->
   tempFilePath = "#{filePath}.tmp"
   move filePath, tempFilePath, (error) ->
@@ -59,7 +61,7 @@ module.exports = (binPath, tempPath, version, url, callback) ->
       fs.chmod chromedriverPath, '755', callback
   else
 
-    unzippedFilePath = "#{tempPath}/chromedriver"
+    unzippedFilePath = "#{tempPath}/chromedriver#{extension}"
     async.waterfall [
       (done) -> downloadFile url, tempPath, tempFileName, done
       (hash, done) -> validate tempFilePath, hash, done
