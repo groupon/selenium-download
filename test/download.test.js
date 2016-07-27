@@ -24,7 +24,6 @@ describe('seleniumDownload', function () {
   after(clearFileSystem);
 
   before('initial download', function (done) {
-    this.timeout(30000);
     seleniumDownload.update(BIN_PATH, done);
   });
 
@@ -35,7 +34,6 @@ describe('seleniumDownload', function () {
 
   describe('from local tmp', function () {
     before(function (done) {
-      this.timeout(30000);
       seleniumDownload.update(BIN_PATH, done);
     });
 
@@ -45,7 +43,6 @@ describe('seleniumDownload', function () {
     });
 
     it('did not download an invalid jar', function (done) {
-      this.timeout(10000);
       execFile('java', [
         // -h means "show usage/help". Selenium has no --version :(
         '-jar', BIN_PATH + '/selenium.jar', '-h'
