@@ -1,3 +1,11 @@
+### 2.0.4
+
+* Support for node v6 and shiny JavaScript - **[@jkrems](https://github.com/jkrems)** [#27](https://github.com/groupon/selenium-download/pull/27)
+  - [`af2e601`](https://github.com/groupon/selenium-download/commit/af2e6012b5ff310e1baf472e29b2be3c75f7e628) **chore:** Port to JavaScript
+  - [`861da47`](https://github.com/groupon/selenium-download/commit/861da4702118339bbe76bd7e73aaa8b69fd12370) **refactor:** drop download, runs on node 6 - see: [#19](https://github.com/groupon/selenium-download/issues/19)
+  - [`6ffd489`](https://github.com/groupon/selenium-download/commit/6ffd48922466d66a44b40feef7b08a14ab38de3c) **test:** Set higher timeout for slow connections - see: [#24](https://github.com/groupon/selenium-download/issues/24)
+
+
 ### 2.0.3
 
 * [`803311c`](https://github.com/groupon/selenium-download/commit/803311c9e922b18195742f9b32b0dd367b761f8a) **fix:** chromedriver download on Windows unzips an .exe file
