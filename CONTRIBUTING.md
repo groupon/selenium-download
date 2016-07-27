@@ -8,6 +8,7 @@ This document outlines some of the practices we care about.
 If you have any questions or suggestions about the process,
 feel free to [open an issue](#reporting-issues)
 .
+
 ## How Can I Contribute?
 
 ### Reporting Issues

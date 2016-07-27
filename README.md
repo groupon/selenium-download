@@ -11,12 +11,13 @@ by checking the
 
 ## example
 
-```coffee
-selenium = require 'selenium-download'
+```js
+var selenium = require('selenium-download');
 
-selenium.ensure "#{__dirname}/bin", (error) ->
-  console.error error.stack if error?
-  process.exit(0)
+selenium.ensure(__dirname + '/bin', function (error) {
+  if (error) console.error(error.stack);
+  process.exit(0);
+});
 ```
 
 ## api
