@@ -1,3 +1,9 @@
+### 2.0.5
+
+* Fix failing OSX chromedriver download due to 2.23 dropped support for mac 32 bit - **[@brettjonesdev](https://github.com/brettjonesdev)** [#30](https://github.com/groupon/selenium-download/pull/30)
+  - [`f84195e`](https://github.com/groupon/selenium-download/commit/f84195ed0cd6986034de582869491db7981859fb) **fix:** chromedriver version 2.23 no longer supports mac 32 bit
+
+
 ### 2.0.4
 
 * Support for node v6 and shiny JavaScript - **[@jkrems](https://github.com/jkrems)** [#27](https://github.com/groupon/selenium-download/pull/27)
