@@ -1,3 +1,9 @@
+### 2.0.6
+
+* Fail cleanly when the chromedriver download 404s - **[@jkrems](https://github.com/jkrems)** [#31](https://github.com/groupon/selenium-download/pull/31)
+  - [`f1a5d73`](https://github.com/groupon/selenium-download/commit/f1a5d73bd0d3b3ceab95f08b4353d8ce856bee68) **fix:** Fail cleanly when the chromedriver download 404s
+
+
 ### 2.0.5
 
 * Fix failing OSX chromedriver download due to 2.23 dropped support for mac 32 bit - **[@brettjonesdev](https://github.com/brettjonesdev)** [#30](https://github.com/groupon/selenium-download/pull/30)

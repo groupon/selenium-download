@@ -1,6 +1,6 @@
 {
   "name": "selenium-download",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "allow downloading of latest selenium standalone server and chromedriver",
   "license": "BSD-3-Clause",
   "main": "lib/index.js",
