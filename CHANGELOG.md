@@ -1,3 +1,9 @@
+### 2.0.7
+
+* Use https to download binaries - **[@jkrems](https://github.com/jkrems)** [#32](https://github.com/groupon/selenium-download/pull/32)
+  - [`1957ca7`](https://github.com/groupon/selenium-download/commit/1957ca79707b9bee224b222500ceb250f736b93b) **fix:** Use https to download binaries
+
+
 ### 2.0.6
 
 * Fail cleanly when the chromedriver download 404s - **[@jkrems](https://github.com/jkrems)** [#31](https://github.com/groupon/selenium-download/pull/31)
