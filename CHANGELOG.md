@@ -1,3 +1,9 @@
+### 2.0.8
+
+* Bump dependencies - **[@jkrems](https://github.com/jkrems)** [#35](https://github.com/groupon/selenium-download/pull/35)
+  - [`70f7fdf`](https://github.com/groupon/selenium-download/commit/70f7fdfcd815278b3c12ef9ff05361593cce8ecc) **chore:** Bump dependencies - see: [#23](https://github.com/groupon/selenium-download/issues/23)
+
+
 ### 2.0.7
 
 * Use https to download binaries - **[@jkrems](https://github.com/jkrems)** [#32](https://github.com/groupon/selenium-download/pull/32)
