@@ -1,3 +1,9 @@
+### 2.0.9
+
+* Only delete files we created - **[@jkrems](https://github.com/jkrems)** [#36](https://github.com/groupon/selenium-download/pull/36)
+  - [`b720fad`](https://github.com/groupon/selenium-download/commit/b720fad52bf759939465d94b91082398e142601d) **fix:** Only delete files we created - see: [#22](https://github.com/groupon/selenium-download/issues/22)
+
+
 ### 2.0.8
 
 * Bump dependencies - **[@jkrems](https://github.com/jkrems)** [#35](https://github.com/groupon/selenium-download/pull/35)
