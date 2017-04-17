@@ -1,3 +1,10 @@
+### 2.0.10
+
+* fix: The XML source from where we were getting the version changed - **[@jac1013](https://github.com/jac1013)** [#38](https://github.com/groupon/selenium-download/pull/38)
+  - [`e68e819`](https://github.com/groupon/selenium-download/commit/e68e819250bb235a0c64223e2c4bab886b1de732) **fix:** The XML source from where we were getting the version changed
+  - [`2716011`](https://github.com/groupon/selenium-download/commit/2716011c33eb564ed17806daae8876006dbc164c) **fix:** trying to add a greater java version through .travis.yml to make tests in CI pass.
+
+
 ### 2.0.9
 
 * Only delete files we created - **[@jkrems](https://github.com/jkrems)** [#36](https://github.com/groupon/selenium-download/pull/36)
