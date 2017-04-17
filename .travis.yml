@@ -3,6 +3,10 @@ node_js:
   - '0.10'
   - '4'
   - '6'
+addons:
+  apt:
+    packages:
+      - oracle-java8-set-default
 before_install:
   - npm install -g npm@latest-2
 before_deploy:
