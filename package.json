@@ -7,7 +7,7 @@
   "homepage": "https://github.com/groupon/selenium-download",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/groupon/selenium-download"
+    "url": "https://github.com/groupon/selenium-download"
   },
   "bugs": {
     "url": "https://github.com/groupon/selenium-download/issues"
@@ -35,12 +35,15 @@
     "xml2js": "~0.4.1"
   },
   "devDependencies": {
-    "assertive": "^2.0.0",
-    "eslint": "^2.0.0",
-    "eslint-config-groupon-es5": "^3.0.0",
-    "eslint-plugin-import": "^1.6.1",
-    "mocha": "^3.0.0",
-    "nlm": "^2.0.0"
+    "assertive": "^2.1.0",
+    "eslint": "^4.7.1",
+    "eslint-config-groupon": "^5.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-prettier": "^2.2.0",
+    "mocha": "^3.1.2",
+    "nlm": "^3.0.0",
+    "prettier": "^1.6.1"
   },
   "author": {
     "name": "Groupon",

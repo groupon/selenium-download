@@ -1,20 +1,21 @@
 'use strict';
-var fs = require('fs');
-var execFile = require('child_process').execFile;
-var path = require('path');
 
-var assert = require('assertive');
-var rmrfSync = require('fs.extra').rmrfSync;
+const fs = require('fs');
+const execFile = require('child_process').execFile;
+const path = require('path');
 
-var tempdir = require('../lib/tempdir');
-var seleniumDownload = require('..');
+const assert = require('assertive');
+const rmrfSync = require('fs.extra').rmrfSync;
 
-var BIN_PATH = path.join(__dirname, 'bin');
-var TMP_PATH = tempdir + 'testium';
+const tempdir = require('../lib/tempdir');
+const seleniumDownload = require('..');
 
-var CHROMEDRIVER = path.join(BIN_PATH, 'chromedriver');
-var SELENIUM_JAR = path.join(BIN_PATH, 'selenium.jar');
-var CUSTOM_SCRIPT = path.join(BIN_PATH, 'innocent-bystander');
+const BIN_PATH = path.join(__dirname, 'bin');
+const TMP_PATH = `${tempdir}testium`;
+
+const CHROMEDRIVER = path.join(BIN_PATH, 'chromedriver');
+const SELENIUM_JAR = path.join(BIN_PATH, 'selenium.jar');
+const CUSTOM_SCRIPT = path.join(BIN_PATH, 'innocent-bystander');
 
 function clearFileSystem() {
   rmrfSync(TMP_PATH);
@@ -23,41 +24,49 @@ function clearFileSystem() {
 
 clearFileSystem();
 
-describe('seleniumDownload', function () {
+describe('seleniumDownload', function() {
   before(clearFileSystem);
 
   after(clearFileSystem);
 
-  before('initial download', function (done) {
+  before('initial download', function(done) {
     seleniumDownload.update(BIN_PATH, done);
   });
 
-  it('downloads the proper files', function () {
+  it('downloads the proper files', function() {
     assert.expect(fs.existsSync(CHROMEDRIVER));
     assert.expect(fs.existsSync(SELENIUM_JAR));
   });
 
-  describe('from local tmp', function () {
-    before(function (done) {
-      fs.writeFileSync(CUSTOM_SCRIPT,
-        'Hours of important work that I did not commit yet');
+  describe('from local tmp', function() {
+    before(function(done) {
+      fs.writeFileSync(
+        CUSTOM_SCRIPT,
+        'Hours of important work that I did not commit yet'
+      );
       seleniumDownload.update(BIN_PATH, done);
     });
 
-    it('downloads the files again', function () {
+    it('downloads the files again', function() {
       assert.expect(fs.existsSync(CHROMEDRIVER));
       assert.expect(fs.existsSync(SELENIUM_JAR));
       assert.expect(fs.existsSync(CUSTOM_SCRIPT));
     });
 
-    it('did not download an invalid jar', function (done) {
-      execFile('java', [
-        // -h means "show usage/help". Selenium has no --version :(
-        '-jar', SELENIUM_JAR, '-h'
-      ], function (error) {
-        clearFileSystem();
-        done(error);
-      });
+    it('did not download an invalid jar', function(done) {
+      execFile(
+        'java',
+        [
+          // -h means "show usage/help". Selenium has no --version :(
+          '-jar',
+          SELENIUM_JAR,
+          '-h',
+        ],
+        function(error) {
+          clearFileSystem();
+          done(error);
+        }
+      );
     });
   });
 });

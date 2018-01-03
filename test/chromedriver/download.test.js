@@ -1,14 +1,15 @@
 'use strict';
-var fs = require('fs');
-var os = require('os');
-var path = require('path');
 
-var assert = require('assertive');
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
 
-var downloadChromeDriver = require('../../lib/chromedriver/download');
+const assert = require('assertive');
+
+const downloadChromeDriver = require('../../lib/chromedriver/download');
 
 // Downloaded, started to make sure it works, copied the file size.
-var CHROME_DRIVER_SIZE = 10907892;
+const CHROME_DRIVER_SIZE = 10907892;
 
 function tryRemove(filename) {
   try {
@@ -18,23 +19,29 @@ function tryRemove(filename) {
   }
 }
 
-describe('downloadChromeDriver', function () {
-  it('fails cleanly when the file is empty', function (done) {
-    var tmpDir = os.tmpdir();
-    var tmpFilePath = path.join(tmpDir, 'chromedriver_0.23');
-    var driverPath = path.join(tmpDir, 'chromedriver');
+describe('downloadChromeDriver', function() {
+  it('fails cleanly when the file is empty', function(done) {
+    const tmpDir = os.tmpdir();
+    const tmpFilePath = path.join(tmpDir, 'chromedriver_0.23');
+    const driverPath = path.join(tmpDir, 'chromedriver');
 
-    var badUrl = 'https://chromedriver.storage.googleapis.com/2.23/chromedriver_mac32.zip';
-    var goodUrl = 'https://chromedriver.storage.googleapis.com/2.23/chromedriver_mac64.zip';
+    const badUrl =
+      'https://chromedriver.storage.googleapis.com/2.23/chromedriver_mac32.zip';
+    const goodUrl =
+      'https://chromedriver.storage.googleapis.com/2.23/chromedriver_mac64.zip';
 
     tryRemove(tmpFilePath);
     tryRemove(driverPath);
 
-    downloadChromeDriver(tmpDir, tmpDir, '0.23', badUrl, function (expectedError) {
+    downloadChromeDriver(tmpDir, tmpDir, '0.23', badUrl, function(
+      expectedError
+    ) {
       assert.truthy(expectedError);
       assert.include('404', expectedError.message);
 
-      downloadChromeDriver(tmpDir, tmpDir, '0.23', goodUrl, function (unexpectedError) {
+      downloadChromeDriver(tmpDir, tmpDir, '0.23', goodUrl, function(
+        unexpectedError
+      ) {
         if (unexpectedError) {
           done(unexpectedError);
           return;
