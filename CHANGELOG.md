@@ -1,3 +1,9 @@
+### 2.0.11
+
+* Apply latest nlm generator - **[@markowsiak](https://github.com/markowsiak)** [#42](https://github.com/groupon/selenium-download/pull/42)
+  - [`2b7315d`](https://github.com/groupon/selenium-download/commit/2b7315dfe9187270352599bb5e3ae87b8223ff12) **chore:** Apply latest nlm generator
+
+
 ### 2.0.10
 
 * fix: The XML source from where we were getting the version changed - **[@jac1013](https://github.com/jac1013)** [#38](https://github.com/groupon/selenium-download/pull/38)
