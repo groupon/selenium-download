@@ -1,3 +1,9 @@
+### 2.0.12
+
+* Stop using magical offsets to determine latest selenium - **[@jkrems](https://github.com/jkrems)** [#43](https://github.com/groupon/selenium-download/pull/43)
+  - [`21dbde7`](https://github.com/groupon/selenium-download/commit/21dbde72103e134f7f8fefbdaddabbc1f08c0f9c) **fix:** Stop using magical offsets to determine latest selenium - see: [#40](https://github.com/groupon/selenium-download/issues/40), [39](https://github.com/groupon/selenium-download/pull/39)
+
+
 ### 2.0.11
 
 * Apply latest nlm generator - **[@markowsiak](https://github.com/markowsiak)** [#42](https://github.com/groupon/selenium-download/pull/42)
