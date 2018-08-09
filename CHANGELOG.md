@@ -1,3 +1,10 @@
+### 2.0.13
+
+* Add extension for windows - **[@jkrems](https://github.com/jkrems)** [#46](https://github.com/groupon/selenium-download/pull/46)
+  - [`266232d`](https://github.com/groupon/selenium-download/commit/266232dd50550e3109a274d53e30684c0bdf3a4f) **style:** Run eslint --fix
+  - [`e1e1623`](https://github.com/groupon/selenium-download/commit/e1e16233dd441d87bd3f9ac682708a558bac2905) **fix:** add extension for windows - see: [#41](https://github.com/groupon/selenium-download/issues/41)
+
+
 ### 2.0.12
 
 * Stop using magical offsets to determine latest selenium - **[@jkrems](https://github.com/jkrems)** [#43](https://github.com/groupon/selenium-download/pull/43)
