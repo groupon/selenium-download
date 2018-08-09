@@ -19,8 +19,8 @@ function tryRemove(filename) {
   }
 }
 
-describe('downloadChromeDriver', function() {
-  it('fails cleanly when the file is empty', function(done) {
+describe('downloadChromeDriver', () => {
+  it('fails cleanly when the file is empty', done => {
     const tmpDir = os.tmpdir();
     const tmpFilePath = path.join(tmpDir, 'chromedriver_0.23');
     const driverPath = path.join(tmpDir, 'chromedriver');
@@ -33,15 +33,11 @@ describe('downloadChromeDriver', function() {
     tryRemove(tmpFilePath);
     tryRemove(driverPath);
 
-    downloadChromeDriver(tmpDir, tmpDir, '0.23', badUrl, function(
-      expectedError
-    ) {
+    downloadChromeDriver(tmpDir, tmpDir, '0.23', badUrl, expectedError => {
       assert.truthy(expectedError);
       assert.include('404', expectedError.message);
 
-      downloadChromeDriver(tmpDir, tmpDir, '0.23', goodUrl, function(
-        unexpectedError
-      ) {
+      downloadChromeDriver(tmpDir, tmpDir, '0.23', goodUrl, unexpectedError => {
         if (unexpectedError) {
           done(unexpectedError);
           return;
