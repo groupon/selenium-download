@@ -24,22 +24,22 @@ function clearFileSystem() {
 
 clearFileSystem();
 
-describe('seleniumDownload', function() {
+describe('seleniumDownload', () => {
   before(clearFileSystem);
 
   after(clearFileSystem);
 
-  before('initial download', function(done) {
+  before('initial download', done => {
     seleniumDownload.update(BIN_PATH, done);
   });
 
-  it('downloads the proper files', function() {
+  it('downloads the proper files', () => {
     assert.expect(fs.existsSync(CHROMEDRIVER));
     assert.expect(fs.existsSync(SELENIUM_JAR));
   });
 
-  describe('from local tmp', function() {
-    before(function(done) {
+  describe('from local tmp', () => {
+    before(done => {
       fs.writeFileSync(
         CUSTOM_SCRIPT,
         'Hours of important work that I did not commit yet'
@@ -47,13 +47,13 @@ describe('seleniumDownload', function() {
       seleniumDownload.update(BIN_PATH, done);
     });
 
-    it('downloads the files again', function() {
+    it('downloads the files again', () => {
       assert.expect(fs.existsSync(CHROMEDRIVER));
       assert.expect(fs.existsSync(SELENIUM_JAR));
       assert.expect(fs.existsSync(CUSTOM_SCRIPT));
     });
 
-    it('did not download an invalid jar', function(done) {
+    it('did not download an invalid jar', done => {
       execFile(
         'java',
         [
@@ -62,7 +62,7 @@ describe('seleniumDownload', function() {
           SELENIUM_JAR,
           '-h',
         ],
-        function(error) {
+        error => {
           clearFileSystem();
           done(error);
         }
