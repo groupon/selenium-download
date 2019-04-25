@@ -1,3 +1,10 @@
+### 2.0.14
+
+* Do not download alpha versions - **[@jkrems](https://github.com/jkrems)** [#50](https://github.com/groupon/selenium-download/pull/50)
+  - [`d4edd83`](https://github.com/groupon/selenium-download/commit/d4edd834f99a74e5c088d080fe3440472091f93d) **fix:** Do not download alpha versions
+  - [`447e3dd`](https://github.com/groupon/selenium-download/commit/447e3dde737f55cb32f8ef0055d12d87a25fbed9) **chore:** Fix travis setup
+
+
 ### 2.0.13
 
 * Add extension for windows - **[@jkrems](https://github.com/jkrems)** [#46](https://github.com/groupon/selenium-download/pull/46)
