@@ -1,16 +1,16 @@
 language: node_js
 node_js:
-  - '6'
   - '8'
   - '10'
+  - '12'
 deploy:
   - provider: script
     script: ./node_modules/.bin/nlm release
     skip_cleanup: true
     'on':
       branch: master
-      node: '10'
+      node: '12'
 addons:
   apt:
     packages:
-      - oracle-java9-set-default
+      - openjdk-9-jre-headless
