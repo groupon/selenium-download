@@ -1,3 +1,12 @@
+### 2.0.15
+
+* fix download Key error - **[@dbushong](https://github.com/dbushong)** [#52](https://github.com/groupon/selenium-download/pull/52)
+  - [`4783124`](https://github.com/groupon/selenium-download/commit/478312418ea2983f66bd57e518cf9c7d539da114) **chore:** npm audit fix --force
+  - [`5a61e29`](https://github.com/groupon/selenium-download/commit/5a61e29a1e2790a7f6c8f7595e508ba76638505f) **style:** eslint --fix
+  - [`8b850a6`](https://github.com/groupon/selenium-download/commit/8b850a62aca7c559824a4a3018860d14f08e51dc) **fix:** only download latest version with server
+  - [`b70dce7`](https://github.com/groupon/selenium-download/commit/b70dce73fd62c0ef11813156b3c6f345441c7f55) **chore:** try openjdk for java test
+
+
 ### 2.0.14
 
 * Do not download alpha versions - **[@jkrems](https://github.com/jkrems)** [#50](https://github.com/groupon/selenium-download/pull/50)
