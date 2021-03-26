@@ -1,15 +1,15 @@
 language: node_js
 node_js:
-  - '8'
-  - '10'
-  - '12'
+  - 10
+  - 12
+  - 14
 deploy:
   - provider: script
-    script: ./node_modules/.bin/nlm release
+    script: npx nlm release
     skip_cleanup: true
     'on':
-      branch: master
-      node: '12'
+      branch: main
+      node: 14
 addons:
   apt:
     packages:

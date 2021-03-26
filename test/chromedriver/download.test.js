@@ -4,7 +4,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-const assert = require('assertive');
+const assert = require('assert');
 
 const downloadChromeDriver = require('../../lib/chromedriver/download');
 
@@ -34,15 +34,15 @@ describe('downloadChromeDriver', () => {
     tryRemove(driverPath);
 
     downloadChromeDriver(tmpDir, tmpDir, '0.23', badUrl, expectedError => {
-      assert.truthy(expectedError);
-      assert.include('404', expectedError.message);
+      assert.ok(expectedError);
+      assert.ok(expectedError.message.includes('404'));
 
       downloadChromeDriver(tmpDir, tmpDir, '0.23', goodUrl, unexpectedError => {
         if (unexpectedError) {
           done(unexpectedError);
           return;
         }
-        assert.equal(CHROME_DRIVER_SIZE, fs.statSync(tmpFilePath).size);
+        assert.strictEqual(fs.statSync(tmpFilePath).size, CHROME_DRIVER_SIZE);
         done();
       });
     });

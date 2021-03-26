@@ -1,11 +1,11 @@
 'use strict';
 
 const fs = require('fs');
-const execFile = require('child_process').execFile;
+const { execFile } = require('child_process');
 const path = require('path');
 
-const assert = require('assertive');
-const rmrfSync = require('fs.extra').rmrfSync;
+const assert = require('assert');
+const rimraf = require('rimraf');
 
 const tempdir = require('../lib/tempdir');
 const seleniumDownload = require('..');
@@ -18,8 +18,8 @@ const SELENIUM_JAR = path.join(BIN_PATH, 'selenium.jar');
 const CUSTOM_SCRIPT = path.join(BIN_PATH, 'innocent-bystander');
 
 function clearFileSystem() {
-  rmrfSync(TMP_PATH);
-  rmrfSync(BIN_PATH);
+  rimraf.sync(TMP_PATH);
+  rimraf.sync(BIN_PATH);
 }
 
 clearFileSystem();
@@ -34,8 +34,8 @@ describe('seleniumDownload', () => {
   });
 
   it('downloads the proper files', () => {
-    assert.expect(fs.existsSync(CHROMEDRIVER));
-    assert.expect(fs.existsSync(SELENIUM_JAR));
+    assert.ok(fs.existsSync(CHROMEDRIVER));
+    assert.ok(fs.existsSync(SELENIUM_JAR));
   });
 
   describe('from local tmp', () => {
@@ -48,9 +48,9 @@ describe('seleniumDownload', () => {
     });
 
     it('downloads the files again', () => {
-      assert.expect(fs.existsSync(CHROMEDRIVER));
-      assert.expect(fs.existsSync(SELENIUM_JAR));
-      assert.expect(fs.existsSync(CUSTOM_SCRIPT));
+      assert.ok(fs.existsSync(CHROMEDRIVER));
+      assert.ok(fs.existsSync(SELENIUM_JAR));
+      assert.ok(fs.existsSync(CUSTOM_SCRIPT));
     });
 
     it('did not download an invalid jar', done => {
