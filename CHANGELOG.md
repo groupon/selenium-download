@@ -1,3 +1,10 @@
+### v2.0.16 (2021-03-26)
+
+#### 🏡 Internal
+
+* [#53](https://github.com/groupon/selenium-download/pull/53) chore: switch to main & update packages ([@aaarichter](https://github.com/aaarichter)) 
+
+
 ### 2.0.15
 
 * fix download Key error - **[@dbushong](https://github.com/dbushong)** [#52](https://github.com/groupon/selenium-download/pull/52)
